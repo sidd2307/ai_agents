@@ -76,7 +76,10 @@ st.markdown("""
     """, unsafe_allow_html=True)
 
 # --- Set Google API Key ---
-os.environ["GOOGLE_API_KEY"] = "AIzaSyDZG2SYJLPWOeHJcRMZOHAKKtvd1H9XkgU"
+if "GOOGLE_API_KEY" in st.secrets:
+    os.environ["GOOGLE_API_KEY"] = st.secrets["GOOGLE_API_KEY"]
+else:
+    st.error("Missing GOOGLE_API_KEY in secrets!")
 
 # --- Constants ---
 COLLECTION_NAME = "deepseek_rag"
